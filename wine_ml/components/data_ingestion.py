@@ -1,12 +1,38 @@
 import os
+import pandas as pd
+import pyodbc
 
-ARTIFACT_DIR = "artifact"
-MODEL_FILE_NAME = "model.pkl"
+from wine_ml.entity.config_entity import DataIngestionConfig
+from wine_ml.entity.artifact_entity import DataIngestionArtifact
+from wine_ml.logger import logging
+from wine_ml.exception import WineException
 
-TARGET_COLUMN = "quality_label"
 
-TRAIN_FILE_NAME = "train.csv"
-TEST_FILE_NAME = "test.csv"
-SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
-PREPROCESSING_OBJECT_FILE_NAME = "preprocessing.pkl"
+class DataIngestion:
+    def __init__(self, config: DataIngestionConfig=DataIngestionConfig()):
+        self.config = config
 
+
+    def ingest_data(self):
+
+        conn = pyodbc.connect(
+            "DRIVER={ODBC Driver 17 for SQL Server};"
+            "SERVER=LAPTOP-Q9V35JK6\SQLEXPRESS;"
+            "DATABASE=ML;"
+            "Trusted_Connection=yes;"
+        )
+
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM wine_quality_classification")
+
+        rows = cursor.fetchall()
+
+        for row in rows:
+            print(row)
+        conn.close()
+
+        
+
+
+X = DataIngestion().ingest_data()
+print(X)

@@ -2,6 +2,7 @@ import os
 
 ARTIFACT_DIR = "artifact"
 MODEL_FILE_NAME = "model.pkl"
+PIPELINE_NAME = "wine_ds"
 
 TARGET_COLUMN = "quality_label"
 
@@ -14,4 +15,5 @@ PREPROCESSING_OBJECT_FILE_NAME: str = "preprocessing.pkl"
 Data Ingestion related constants
 """
 DATA_INGESTION_DIR_NAME: str = "data_ingestion"
-DATA_NGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2
+DATA_INGESTION_INGESTED_DIR = "data_ingested"
+DATA_iNGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2
