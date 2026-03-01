@@ -34,13 +34,13 @@ class DataIngestion:
             logging.info("Starting the data ingestion process from the DB...")
             # Getting data from the database
             conn = pyodbc.connect(
-                "DRIVER={ODBC Driver 17 for SQL Server};"
-                "SERVER=LAPTOP-Q9V35JK6\SQLEXPRESS;"
-                "DATABASE=ML;"
-                "Trusted_Connection=yes;"
+                f"DRIVER={{ODBC Driver 17 for SQL Server}};"
+                f"SERVER={SERVER};"
+                f"DATABASE={DATABASE};"
+                f"Trusted_Connection=yes;"
             )
 
-            query = "SELECT * FROM wine_quality_classification"
+            query = f"SELECT * FROM {TABLE}"
             df = pd.read_sql(query, conn)
             conn.close()
             logging.info(f"Data of {df.shape} rows and columns successfully loaded from the database...")

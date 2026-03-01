@@ -1,5 +1,9 @@
 import os
 
+
+SERVER = "LAPTOP-Q9V35JK6\SQLEXPRESS;"
+DATABASE = "ML;"
+TABLE = "wine_quality_classification"
 ARTIFACT_DIR = "artifact"
 MODEL_FILE_NAME = "model.pkl"
 PIPELINE_NAME = "wine_ds"
