@@ -3,7 +3,7 @@ from wine_ml.constants import *
 from dataclasses import dataclass
 from datetime import datetime
 
-TIMESTAMP: str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+TIMESTAMP: str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 @dataclass
 class TrainingPipelineConfig:
     pipeline_name:str = PIPELINE_NAME

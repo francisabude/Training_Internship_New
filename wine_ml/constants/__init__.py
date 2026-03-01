@@ -16,4 +16,4 @@ Data Ingestion related constants
 """
 DATA_INGESTION_DIR_NAME: str = "data_ingestion"
 DATA_INGESTION_INGESTED_DIR = "data_ingested"
-DATA_iNGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2
+DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2

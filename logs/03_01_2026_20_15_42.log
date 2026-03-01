@@ -1,0 +1,1 @@
+[ 2026-03-01 20:15:42,382 ] root -INFO - Data  Ingestion initialized with config DataIngestionConfig(data_ingestion_dir='artifact\\2026-03-01 20:15:42\\data_ingestion', training_file_path='artifact\\2026-03-01 20:15:42\\data_ingestion\\data_ingested\\train.csv', testing_file_path='artifact\\2026-03-01 20:15:42\\data_ingestion\\data_ingested\\test.csv')
