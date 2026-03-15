@@ -15,7 +15,7 @@ from wine_ml.constants import *
 class DataIngestion:
     def __init__(self, config: DataIngestionConfig=DataIngestionConfig()):
         """
-        configuration for th data ingstion
+        configuration for the data ingstion
         """
         try:
             self.config = config
