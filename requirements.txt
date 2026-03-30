@@ -1,4 +1,5 @@
 pyodbc
 from_root
 scikit-learn
+evidently
 -e .
