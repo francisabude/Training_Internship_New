@@ -1,0 +1,7 @@
+[ 2026-04-12 19:51:02,308 ] root -INFO - Data  Ingestion initialized with config DataIngestionConfig(data_ingestion_dir='artifact\\2026-04-12_19-50-35\\data_ingestion', training_file_path='artifact\\2026-04-12_19-50-35\\data_ingestion\\data_ingested\\train.csv', testing_file_path='artifact\\2026-04-12_19-50-35\\data_ingestion\\data_ingested\\test.csv')
+[ 2026-04-12 19:51:02,355 ] root -INFO - Starting the data ingestion process from the DB...
+[ 2026-04-12 19:51:03,606 ] root -INFO - Data of (1000, 5) rows and columns successfully loaded from the database...
+[ 2026-04-12 19:51:03,695 ] root -INFO - Train Test splitting mechanism successfully done.
+[ 2026-04-12 19:51:03,771 ] root -INFO - Data succesfully splitted into artifact directory..
+[ 2026-04-12 19:51:10,625 ] asyncio -DEBUG - Using proactor: IocpProactor
+[ 2026-04-12 19:51:18,398 ] asyncio -DEBUG - Using proactor: IocpProactor

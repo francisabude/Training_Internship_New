@@ -1,0 +1,22 @@
+[ 2026-04-13 00:10:57,402 ] root -INFO - Data  Ingestion initialized with config DataIngestionConfig(data_ingestion_dir='artifact\\2026-04-13_00-10-47\\data_ingestion', training_file_path='artifact\\2026-04-13_00-10-47\\data_ingestion\\data_ingested\\train.csv', testing_file_path='artifact\\2026-04-13_00-10-47\\data_ingestion\\data_ingested\\test.csv')
+[ 2026-04-13 00:10:57,416 ] root -INFO - Starting the data ingestion process from the DB...
+[ 2026-04-13 00:10:57,726 ] root -INFO - Data of (1000, 5) rows and columns successfully loaded from the database...
+[ 2026-04-13 00:10:57,765 ] root -INFO - Train Test splitting mechanism successfully done.
+[ 2026-04-13 00:10:57,798 ] root -INFO - Data succesfully splitted into artifact directory..
+[ 2026-04-13 00:11:01,573 ] asyncio -DEBUG - Using proactor: IocpProactor
+[ 2026-04-13 00:11:05,268 ] asyncio -DEBUG - Using proactor: IocpProactor
+[ 2026-04-13 00:11:05,401 ] root -INFO - ======Entered the start_data_ingestion method of TrainPipeline class======
+[ 2026-04-13 00:11:05,401 ] root -INFO - Getting the data from notebooks
+[ 2026-04-13 00:11:05,401 ] root -INFO - Data  Ingestion initialized with config DataIngestionConfig(data_ingestion_dir='artifact\\2026-04-13_00-10-47\\data_ingestion', training_file_path='artifact\\2026-04-13_00-10-47\\data_ingestion\\data_ingested\\train.csv', testing_file_path='artifact\\2026-04-13_00-10-47\\data_ingestion\\data_ingested\\test.csv')
+[ 2026-04-13 00:11:05,402 ] root -INFO - Starting the data ingestion process from the DB...
+[ 2026-04-13 00:11:05,418 ] root -INFO - Data of (1000, 5) rows and columns successfully loaded from the database...
+[ 2026-04-13 00:11:05,419 ] root -INFO - Train Test splitting mechanism successfully done.
+[ 2026-04-13 00:11:05,426 ] root -INFO - Data succesfully splitted into artifact directory..
+[ 2026-04-13 00:11:05,426 ] root -INFO - Got the train_set and test_set from feature store
+[ 2026-04-13 00:11:05,426 ] root -INFO - Exited the start_data_ingestion method of TrainPipeline class
+[ 2026-04-13 00:11:05,426 ] root -INFO - ======Entered the start_data_validation method of TrainPipeline class======
+[ 2026-04-13 00:11:05,429 ] root -INFO - Starting data validation
+[ 2026-04-13 00:11:05,494 ] root -INFO - Is required column present: [True]
+[ 2026-04-13 00:11:05,495 ] root -INFO - All required columns present in training dataframe: True
+[ 2026-04-13 00:11:05,495 ] root -INFO - Is required column present: [True]
+[ 2026-04-13 00:11:05,495 ] root -INFO - All required columns present in testing dataframe: True
