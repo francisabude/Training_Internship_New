@@ -81,18 +81,40 @@ class DataValidation:
             try:
                 report = Report([DataDriftPreset()])
                 result = report.run(reference_data=reference_df, current_data=current_df)
-
-                # Export methods are on the result, not the report
                 json_report = json.loads(result.json())
 
-                write_yaml_file(file_path=self.data_validation_config.drift_report_file_path, content=json_report)
+                write_yaml_file(
+                    file_path=self.data_validation_config.drift_report_file_path,
+                    content=json_report
+                )
 
-                n_features = json_report["metrics"][0]["result"]["number_of_columns"]
-                n_drifted_features = json_report["metrics"][0]["result"]["number_of_drifted_columns"]
+                metrics = json_report.get("metrics", [])
 
-                logging.info(f"{n_drifted_features}/{n_features} drift detected.")
-                drift_status = json_report["metrics"][0]["result"]["dataset_drift"]
+                # 1. Extract DriftedColumnsCount metric
+                drifted_col_metric = next(
+                    (m for m in metrics if "DriftedColumnsCount" in m.get("metric_name", "")),
+                    None
+                )
+                if drifted_col_metric is None:
+                    raise ValueError("DriftedColumnsCount metric not found in report.")
+
+                n_drifted = drifted_col_metric["value"]["count"]
+                drift_share = drifted_col_metric["config"]["drift_share"]  # default 0.5
+
+                # 2. Count total ValueDrift columns
+                value_drift_metrics = [
+                    m for m in metrics if "ValueDrift" in m.get("metric_name", "")
+                ]
+                n_features = len(value_drift_metrics)
+
+                # 3. Derive dataset_drift: drifted share >= drift_share threshold
+                drift_status = (n_drifted / n_features) >= drift_share if n_features > 0 else False
+
+                logging.info(f"{int(n_drifted)}/{n_features} columns drifted "
+                            f"(share={drift_share}). Dataset drift: {drift_status}")
+
                 return drift_status
+
             except Exception as e:
                 raise WineException(e, sys) from e
             
@@ -133,12 +155,14 @@ class DataValidation:
                 validation_status = len(validation_error_msg) == 0
 
                 if validation_status:
+                    logging.info("drift Started..")
                     drift_status = self.detect_dataset_drift(train_df, test_df)
                     if drift_status:
                         logging.info(f"Drift detected.")
                         validation_error_msg = "Drift detected"
                     else:
                         validation_error_msg = "Drift not detected"
+                    logging.info("drift ended..")
                 else:
                     logging.info(f"Validation_error: {validation_error_msg}")
                     

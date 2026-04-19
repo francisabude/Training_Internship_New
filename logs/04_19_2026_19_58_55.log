@@ -1,0 +1,95 @@
+[ 2026-04-19 19:58:55,123 ] root -INFO - Data  Ingestion initialized with config DataIngestionConfig(data_ingestion_dir='artifact\\2026-04-19_19-58-53\\data_ingestion', training_file_path='artifact\\2026-04-19_19-58-53\\data_ingestion\\data_ingested\\train.csv', testing_file_path='artifact\\2026-04-19_19-58-53\\data_ingestion\\data_ingested\\test.csv')
+[ 2026-04-19 19:58:55,131 ] root -INFO - Starting the data ingestion process from the DB...
+[ 2026-04-19 19:58:55,192 ] root -INFO - Data of (1000, 5) rows and columns successfully loaded from the database...
+[ 2026-04-19 19:58:55,193 ] root -INFO - Train Test splitting mechanism successfully done.
+[ 2026-04-19 19:58:55,208 ] root -INFO - Data succesfully splitted into artifact directory..
+[ 2026-04-19 19:58:56,951 ] asyncio -DEBUG - Using proactor: IocpProactor
+[ 2026-04-19 19:58:59,719 ] asyncio -DEBUG - Using proactor: IocpProactor
+[ 2026-04-19 19:58:59,801 ] root -INFO - ======Entered the start_data_ingestion method of TrainPipeline class======
+[ 2026-04-19 19:58:59,802 ] root -INFO - Getting the data from notebooks
+[ 2026-04-19 19:58:59,802 ] root -INFO - Data  Ingestion initialized with config DataIngestionConfig(data_ingestion_dir='artifact\\2026-04-19_19-58-53\\data_ingestion', training_file_path='artifact\\2026-04-19_19-58-53\\data_ingestion\\data_ingested\\train.csv', testing_file_path='artifact\\2026-04-19_19-58-53\\data_ingestion\\data_ingested\\test.csv')
+[ 2026-04-19 19:58:59,802 ] root -INFO - Starting the data ingestion process from the DB...
+[ 2026-04-19 19:58:59,828 ] root -INFO - Data of (1000, 5) rows and columns successfully loaded from the database...
+[ 2026-04-19 19:58:59,829 ] root -INFO - Train Test splitting mechanism successfully done.
+[ 2026-04-19 19:58:59,844 ] root -INFO - Data succesfully splitted into artifact directory..
+[ 2026-04-19 19:58:59,844 ] root -INFO - Got the train_set and test_set from feature store
+[ 2026-04-19 19:58:59,844 ] root -INFO - Exited the start_data_ingestion method of TrainPipeline class
+[ 2026-04-19 19:58:59,844 ] root -INFO - ======Entered the start_data_validation method of TrainPipeline class======
+[ 2026-04-19 19:58:59,851 ] root -INFO - Starting data validation
+[ 2026-04-19 19:58:59,885 ] root -INFO - Is required column present: [True]
+[ 2026-04-19 19:58:59,885 ] root -INFO - All required columns present in training dataframe: True
+[ 2026-04-19 19:58:59,885 ] root -INFO - Is required column present: [True]
+[ 2026-04-19 19:58:59,885 ] root -INFO - All required columns present in testing dataframe: True
+[ 2026-04-19 19:58:59,886 ] root -INFO - drift Started..
+[ 2026-04-19 19:59:01,389 ] root -ERROR - Full report structure: {
+  "metrics": [
+    {
+      "id": "15e89f895b482f9b84ba7274ed18a106",
+      "metric_name": "DriftedColumnsCount(drift_share=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:DriftedColumnsCount",
+        "drift_share": 0.5
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "9fd9ff012585e26a1767f3976a7a8fc1",
+      "metric_name": "ValueDrift(column=fixed_acidity,method=K-S p_value,threshold=0.05)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "fixed_acidity",
+        "method": "K-S p_value",
+        "threshold": 0.05
+      },
+      "value": 0.14438339908966644
+    },
+    {
+      "id": "a6784ba3551dc5c153825df16888968a",
+      "metric_name": "ValueDrift(column=residual_sugar,method=K-S p_value,threshold=0.05)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "residual_sugar",
+        "method": "K-S p_value",
+        "threshold": 0.05
+      },
+      "value": 0.7322993405433824
+    },
+    {
+      "id": "1e5f378bfba3a81170c1c3fea15ba4f5",
+      "metric_name": "ValueDrift(column=alcohol,method=K-S p_value,threshold=0.05)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "alcohol",
+        "method": "K-S p_value",
+        "threshold": 0.05
+      },
+      "value": 0.9874680138859596
+    },
+    {
+      "id": "3580106b2405745f475e779a84e525ef",
+      "metric_name": "ValueDrift(column=density,method=K-S p_value,threshold=0.05)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "density",
+        "method": "K-S p_value",
+        "threshold": 0.05
+      },
+      "value": 0.7832521474862038
+    },
+    {
+      "id": "9e895f72980abc3740a2a2c17b113878",
+      "metric_name": "ValueDrift(column=quality_label,method=chi-square p_value,threshold=0.05)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "quality_label",
+        "method": "chi-square p_value",
+        "threshold": 0.05
+      },
+      "value": 0.7610007656331792
+    }
+  ],
+  "tests": []
+}
