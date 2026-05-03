@@ -1,7 +1,8 @@
-from wine_ml.entity.config_entity import (DataIngestionConfig, DataValidationConfig)
-from wine_ml.entity.artifact_entity import (DataIngestionArtifact, DataValidationArtifact)
+from wine_ml.entity.config_entity import (DataIngestionConfig, DataValidationConfig, DataTransformationConfig)
+from wine_ml.entity.artifact_entity import (DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact)
 from wine_ml.components.data_ingestion import DataIngestion
 from wine_ml.components.data_validation import DataValidation
+from wine_ml.components.data_transformation import DataTransformation
 from wine_ml.constants import *
 from wine_ml.exception import WineException
 from wine_ml.logger import logging
@@ -48,6 +49,19 @@ class TrainPipeline:
 
         except Exception as e:
             raise WineException(e, sys) from e
+        
+    def start_data_transformation(self, data_ingestion_artifact: DataIngestionArtifact, data_validation_artifact: DataValidationArtifact) -> DataTransformationArtifact:
+        """
+        This method of TrainPipeline class is responsible for starting data transformation component
+        """
+        try:
+            data_transformation = DataTransformation(data_ingestion_artifact=data_ingestion_artifact,
+                                                     data_transformation_config=self.data_transformation_config,
+                                                     data_validation_artifact=data_validation_artifact)
+            data_transformation_artifact = data_transformation.initiate_data_transformation()
+            return data_transformation_artifact
+        except Exception as e:
+            raise WineException(e, sys)    
 
 
     def run_pipeline(self) -> None:
@@ -57,6 +71,7 @@ class TrainPipeline:
         try:
             data_ingestion_artifact = self.start_ingest_data()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact)
+            data_transformation_artifact = self.start_data_transformation(data_ingestion_artifact, data_validation_artifact)
     
         
         except Exception as e:

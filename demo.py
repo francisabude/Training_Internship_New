@@ -1,3 +1,3 @@
-from wine_ml.pipeline.training_pipeline import *
+from wine_project.pipeline.training_pipeline import *
 
 app = TrainPipeline().run_pipeline()

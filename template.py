@@ -1,7 +1,7 @@
 import  os
 from pathlib import Path
 
-project_name = "wine_ml"
+project_name = "wine_project"
 
 list_of_files = [
 f"{project_name}/__init__.py",

@@ -14,7 +14,7 @@ from wine_ml.exception import WineException
 from wine_ml.constants import *
 from wine_ml.constants import SCHEMA_FILE_PATH
 from wine_ml.utils.main_utils import *
-print([m for m in dir(Report) if not m.startswith('_')])
+#print([m for m in dir(Report) if not m.startswith('_')])
 
 
 

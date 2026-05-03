@@ -1,5 +1,5 @@
-from wine_ml.logger import logging
-from wine_ml.exception import WineException
+from wine_project.logger import logging
+from wine_project.exception import WineException
 
 
 logging.info("This is our first log")
