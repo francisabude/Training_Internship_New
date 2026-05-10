@@ -1,3 +1,4 @@
-from wine_project.pipeline.training_pipeline import *
+from wine_ml.pipeline.training_pipeline import TrainPipeline
 
-app = TrainPipeline().run_pipeline()
+if __name__ == "__main__":
+    TrainPipeline().run_pipeline()

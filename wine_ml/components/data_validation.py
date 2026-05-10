@@ -80,39 +80,51 @@ class DataValidation:
         def detect_dataset_drift(self, reference_df: DataFrame, current_df: DataFrame) -> bool:
             try:
                 report = Report([DataDriftPreset()])
-                result = report.run(reference_data=reference_df, current_data=current_df)
-                json_report = json.loads(result.json())
+                snapshot = report.run(reference_data=reference_df, current_data=current_df)
+                json_report = json.loads(snapshot.json())
 
                 write_yaml_file(
                     file_path=self.data_validation_config.drift_report_file_path,
-                    content=json_report
+                    content=json_report,
                 )
 
                 metrics = json_report.get("metrics", [])
 
-                # 1. Extract DriftedColumnsCount metric
+                # In Evidently 0.7.x the identifier is `metric_id` (a string like
+                # "DriftedColumnsCount(drift_share=0.5)"), not `metric_name`.
+                def mid(m):
+                    return m.get("metric_id") or m.get("metric_name") or ""
+
                 drifted_col_metric = next(
-                    (m for m in metrics if "DriftedColumnsCount" in m.get("metric_name", "")),
-                    None
+                    (m for m in metrics if "DriftedColumnsCount" in mid(m)),
+                    None,
                 )
                 if drifted_col_metric is None:
-                    raise ValueError("DriftedColumnsCount metric not found in report.")
+                    raise ValueError(
+                        f"DriftedColumnsCount not found. Available: {[mid(m) for m in metrics]}"
+                    )
 
-                n_drifted = drifted_col_metric["value"]["count"]
-                drift_share = drifted_col_metric["config"]["drift_share"]  # default 0.5
+                value = drifted_col_metric.get("value", {})
+                n_drifted = value.get("count", 0) if isinstance(value, dict) else int(value)
+                share = value.get("share") if isinstance(value, dict) else None
 
-                # 2. Count total ValueDrift columns
-                value_drift_metrics = [
-                    m for m in metrics if "ValueDrift" in m.get("metric_name", "")
-                ]
+                # Pull drift_share threshold out of the metric_id signature, fallback 0.5
+                import re
+                m = re.search(r"drift_share\s*=\s*([0-9.]+)", mid(drifted_col_metric))
+                drift_share = float(m.group(1)) if m else 0.5
+
+                value_drift_metrics = [m for m in metrics if "ValueDrift" in mid(m)]
                 n_features = len(value_drift_metrics)
 
-                # 3. Derive dataset_drift: drifted share >= drift_share threshold
-                drift_status = (n_drifted / n_features) >= drift_share if n_features > 0 else False
+                if share is None:
+                    share = (n_drifted / n_features) if n_features > 0 else 0.0
 
-                logging.info(f"{int(n_drifted)}/{n_features} columns drifted "
-                            f"(share={drift_share}). Dataset drift: {drift_status}")
+                drift_status = share >= drift_share
 
+                logging.info(
+                    f"{int(n_drifted)}/{n_features} columns drifted "
+                    f"(share={share:.3f}, threshold={drift_share}). Dataset drift: {drift_status}"
+                )
                 return drift_status
 
             except Exception as e:

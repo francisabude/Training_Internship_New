@@ -1,0 +1,33 @@
+[ 2026-05-10 20:58:10,288 ] asyncio -DEBUG - Using proactor: IocpProactor
+[ 2026-05-10 20:58:13,622 ] asyncio -DEBUG - Using proactor: IocpProactor
+[ 2026-05-10 20:58:13,820 ] root -INFO - ======Entered the start_data_ingestion method of TrainPipeline class======
+[ 2026-05-10 20:58:13,820 ] root -INFO - Getting the data from notebooks
+[ 2026-05-10 20:58:13,820 ] root -INFO - Data  Ingestion initialized with config DataIngestionConfig(data_ingestion_dir='artifact\\2026-05-10_20-57-57\\data_ingestion', training_file_path='artifact\\2026-05-10_20-57-57\\data_ingestion\\data_ingested\\train.csv', testing_file_path='artifact\\2026-05-10_20-57-57\\data_ingestion\\data_ingested\\test.csv')
+[ 2026-05-10 20:58:13,841 ] root -INFO - Starting the data ingestion process from the DB...
+[ 2026-05-10 20:58:14,295 ] root -INFO - Data of (1000, 5) rows and columns successfully loaded from the database...
+[ 2026-05-10 20:58:14,399 ] root -INFO - Train Test splitting mechanism successfully done.
+[ 2026-05-10 20:58:14,439 ] root -INFO - Data succesfully splitted into artifact directory..
+[ 2026-05-10 20:58:14,459 ] root -INFO - Got the train_set and test_set from feature store
+[ 2026-05-10 20:58:14,459 ] root -INFO - Exited the start_data_ingestion method of TrainPipeline class
+[ 2026-05-10 20:58:14,459 ] root -INFO - ======Entered the start_data_validation method of TrainPipeline class======
+[ 2026-05-10 20:58:14,468 ] root -INFO - Starting data validation
+[ 2026-05-10 20:58:14,528 ] root -INFO - Is required column present: [True]
+[ 2026-05-10 20:58:14,528 ] root -INFO - All required columns present in training dataframe: True
+[ 2026-05-10 20:58:14,528 ] root -INFO - Is required column present: [True]
+[ 2026-05-10 20:58:14,528 ] root -INFO - All required columns present in testing dataframe: True
+[ 2026-05-10 20:58:14,528 ] root -INFO - drift Started..
+[ 2026-05-10 20:58:17,608 ] root -INFO - 0/5 columns drifted (share=0.000, threshold=0.5). Dataset drift: False
+[ 2026-05-10 20:58:17,609 ] root -INFO - drift ended..
+[ 2026-05-10 20:58:17,609 ] root -INFO - Data validation artifact: DataValidationArtifact(validation_status=True, message='Drift not detected', drift_report_file_path='artifact\\2026-05-10_20-57-57\\data_validation\\drift_report\\drift_report.yaml')
+[ 2026-05-10 20:58:17,610 ] root -INFO - Performed the data validation operation
+[ 2026-05-10 20:58:17,610 ] root -INFO - Exited the start_data_validation method of TrainPipeline class
+[ 2026-05-10 20:58:17,614 ] root -INFO - Starting data transformation
+[ 2026-05-10 20:58:17,614 ] root -INFO - Entered get_data_transformer_object method of DataTransformation class
+[ 2026-05-10 20:58:17,614 ] root -INFO - Got numerical cols from schema config
+[ 2026-05-10 20:58:17,614 ] root -INFO - Initialized MinMaxScaler
+[ 2026-05-10 20:58:17,614 ] root -INFO - Initialize PowerTransformer
+[ 2026-05-10 20:58:17,615 ] root -INFO - Exited get_data_transformer_object method of DataTransformation class
+[ 2026-05-10 20:58:17,615 ] root -INFO - Got the preprocessor object
+[ 2026-05-10 20:58:17,620 ] root -INFO - Got train features and test features of Training dataset
+[ 2026-05-10 20:58:17,626 ] root -INFO - Got train features and test features of Testing dataset
+[ 2026-05-10 20:58:17,627 ] root -INFO - Applying preprocessing object on training dataframe and testing dataframe

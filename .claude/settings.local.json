@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(.\\\\trainee_ds\\\\Scripts\\\\python.exe demo.py)"
+    ]
+  }
+}

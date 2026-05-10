@@ -15,3 +15,7 @@ logging.basicConfig(
     format="[ %(asctime)s ] %(name)s -%(levelname)s - %(message)s",
     level=logging.DEBUG
 )
+
+logging.getLogger("mlflow").setLevel(logging.DEBUG)
+logging.getLogger("urllib3").setLevel(logging.DEBUG)
+logging.getLogger("httpx").setLevel(logging.DEBUG)

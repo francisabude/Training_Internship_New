@@ -55,7 +55,10 @@ class DataTransformation:
             numeric_transformer = MinMaxScaler()
             logging.info("Initialized MinMaxScaler")
 
-            num_features = self._schema_config['numerical_columns']  
+            num_features = [
+                list(col.keys())[0] if isinstance(col, dict) else col
+                for col in self._schema_config['numerical_columns']
+            ]
             logging.info("Initialize PowerTransformer")
 
     

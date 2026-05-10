@@ -12,6 +12,7 @@ class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
+        self.data_transformation_config = DataTransformationConfig()
 
     def start_ingest_data(self) -> DataIngestionArtifact:
         """

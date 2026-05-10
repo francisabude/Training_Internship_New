@@ -70,9 +70,3 @@ class DataIngestion:
 
         except Exception as e:
             raise Exception(e, sys)
-
-        
-
-
-X = DataIngestion().ingest_data()
-print(X)
