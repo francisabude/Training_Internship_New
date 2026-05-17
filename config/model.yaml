@@ -19,3 +19,11 @@ model_selection:
       - lbfgs
       - newton-cg
       - saga
+
+  module_1:
+    class: DecisionTreeClassifier
+    module: sklearn.tree.DecisionTreeClassifier
+    params:
+      criterion : {“gini”, “entropy”, “log_loss”}
+      splitter: best
+    
